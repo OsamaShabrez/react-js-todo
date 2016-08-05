@@ -29,24 +29,26 @@ export default class Layout extends React.Component {
         }
     }
 
-    // add new task, takes an object with text, and current status (imcomplete)
+    // add new task, takes an object with text, and current status (incomplete)
     // and concats to the state.listItems. In react objects are immutable so we
-    // update previousState and create a new state with return
+    // copy previousState, makes changes  and create a new state with return
     addNewTask(newTask) {
-        this.setState(function(previousState, currentProps) {
-            if (newTask.text.length != 0) {
-                return {listItems: previousState.listItems.concat(newTask)}
-            }
+        this.setState({
+            listItems: this.state.listItems.concat(newTask)
         });
     }
 
     // takes the index number of task in state.listItems and updates the status
     // to either true (complete) or false (incomplete) depending on current status
     updateListItemStatus(number) {
-        this.setState(function(previousState, currentProps) {
-            var newListItems = previousState.listItems.slice();
-            newListItems[number].done  = newListItems[number].done ? false : true;
-            return {listItems: newListItems}
+        this.setState({
+            listItems: this.state.listItems.filter(
+                function(c, i) {
+                    if (i == number) {
+                        c.done = c.done ? false : true;
+                    }
+                    return c;
+                })
         });
     }
 
@@ -55,7 +57,12 @@ export default class Layout extends React.Component {
     // automatically
     removeListItem(number) {
         this.setState({
-            listItems: this.state.listItems.filter((_, i) => i !== number)
+            // listItems: this.state.listItems.filter((_, i) => i !== number)
+            listItems: this.state.listItems.filter(
+                function (c, i) {
+                    if (i != number)
+                        return c;
+                })
         });
     }
 

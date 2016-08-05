@@ -20,7 +20,7 @@ export default class TodoList extends React.Component {
                 <dl class="dl-horizontal">
                 {
                     listItems.map(function(item, index) {
-                      return <Item key={index} index={index} item={item}  updateListItemStatus={updateListItemStatus} removeListItem={removeListItem} />
+                      return <Item key={index} item={item} index={index} updateListItemStatus={updateListItemStatus} removeListItem={removeListItem} />
                     })
                 }
                 </dl>

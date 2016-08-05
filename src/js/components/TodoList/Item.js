@@ -26,7 +26,7 @@ export default class Item extends React.Component {
                 <dd>
                     <label for={index}>
                         {text}
-                        <span class="pull-right littlemargin glyphicon glyphicon-remove" aria-hidden="true" onClick={this.handleClick.bind(this, index)} ></span>
+                        <button class="pull-right littlemargin glyphicon glyphicon-remove" aria-hidden="true" onClick={this.handleClick.bind(this, index)} ></button>
                     </label>
                 </dd>
             </div>
