@@ -15,10 +15,13 @@ export default class Item extends React.Component {
 
         return (
             <div class="row">
-                <dt><input type="checkbox" onChange={this.handleChange.bind(this, index)} checked={done} /></dt>
+
+                <dt><input id={index} type="checkbox" onChange={this.handleChange.bind(this, index)} checked={done} /></dt>
                 <dd>
-                    {text}
-                    <span class="pull-right littlemargin glyphicon glyphicon-remove" aria-hidden="true" onClick={this.handleClick.bind(this, index)} ></span>
+                    <label for={index}>
+                        {text}
+                        <span class="pull-right littlemargin glyphicon glyphicon-remove" aria-hidden="true" onClick={this.handleClick.bind(this, index)} ></span>
+                    </label>
                 </dd>
             </div>
         );
