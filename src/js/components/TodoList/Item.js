@@ -2,8 +2,11 @@ import React from "react";
 
 export default class Item extends React.Component {
     handleChange(event) {
-        console.log('number?: ' + event);
         this.props.updateListItemStatus(event);
+    }
+
+    handleClick(event) {
+        this.props.removeListItem(event);
     }
 
     render() {
@@ -12,10 +15,10 @@ export default class Item extends React.Component {
 
         return (
             <div class="row">
-                <dt><input type="checkbox" onchange={this.handleChange.bind(this, index)} defaultChecked={done} /></dt>
+                <dt><input type="checkbox" onChange={this.handleChange.bind(this, index)} checked={done} /></dt>
                 <dd>
                     {text}
-                    <span class="pull-right littlemargin glyphicon glyphicon-remove" aria-hidden="true" onClick={this.handleChange.bind(this, index)} ></span>
+                    <span class="pull-right littlemargin glyphicon glyphicon-remove" aria-hidden="true" onClick={this.handleClick.bind(this, index)} ></span>
                 </dd>
             </div>
         );

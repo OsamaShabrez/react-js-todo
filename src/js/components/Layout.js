@@ -33,12 +33,17 @@ export default class Layout extends React.Component {
     }
 
     updateListItemStatus(number) {
-        console.log(this.state.listItems);
-        var newListItems = this.state.listItems.slice();
-        console.log(newListItems[number]);
-//        newListItems[number].done = true;
-        this.setState({listItems: newListItems});
-        console.log(this.state.listItems);
+        this.setState(function(previousState, currentProps) {
+            var newListItems = previousState.listItems.slice();
+            newListItems[number].done  = newListItems[number].done ? false : true;
+            return {listItems: newListItems}
+        });
+    }
+
+    removeListItem(number) {
+        this.setState({
+            listItems: this.state.listItems.filter((_, i) => i !== number)
+        });
     }
 
     render() {
@@ -47,7 +52,7 @@ export default class Layout extends React.Component {
                 <Header appTitle={this.state.appTitle} />
                 <div class="container main">
                     <TodoAddForm addNewTask={this.addNewTask.bind(this)} />
-                    <TodoList listItems={this.state.listItems} updateListItemStatus={this.updateListItemStatus.bind(this)} />
+                    <TodoList listItems={this.state.listItems} updateListItemStatus={this.updateListItemStatus.bind(this)} removeListItem={this.removeListItem.bind(this)} />
                 </div>
                 <Footer footerText={this.state.footerText} />
             </div>
