@@ -1,10 +1,16 @@
 import React from "react";
 
 export default class Item extends React.Component {
+    // handles the change (when the list item status is changed) [checkbox is
+    // checked or unchecked]
+    // sends the index number of the list to updateListItemStatus in layout.js
+    // to update state
     handleChange(event) {
         this.props.updateListItemStatus(event);
     }
 
+    // handles the click on close button, sends the index no to the function in
+    // layout.js removeListItem function
     handleClick(event) {
         this.props.removeListItem(event);
     }

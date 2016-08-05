@@ -1,11 +1,16 @@
 import React from "react";
 
+// importing child components into Layout
 import Footer from "./Footer";
 import TodoAddForm from "./TodoAddForm";
 import Header from "./Header";
 import TodoList from "./TodoList";
 
+// we are making a small ToDo list where new tasks can be added, previous tasks
+// can be marked done or completely removed
 export default class Layout extends React.Component {
+
+    // setting up the initial state of our application, page title, footer text
     constructor() {
         super();
         this.state = {
@@ -24,6 +29,9 @@ export default class Layout extends React.Component {
         }
     }
 
+    // add new task, takes an object with text, and current status (imcomplete)
+    // and concats to the state.listItems. In react objects are immutable so we
+    // update previousState and create a new state with return
     addNewTask(newTask) {
         this.setState(function(previousState, currentProps) {
             if (newTask.text.length != 0) {
@@ -32,6 +40,8 @@ export default class Layout extends React.Component {
         });
     }
 
+    // takes the index number of task in state.listItems and updates the status
+    // to either true (complete) or false (incomplete) depending on current status
     updateListItemStatus(number) {
         this.setState(function(previousState, currentProps) {
             var newListItems = previousState.listItems.slice();
@@ -40,6 +50,9 @@ export default class Layout extends React.Component {
         });
     }
 
+    // using the index number filters the listItems and remove the matching index
+    // number. Uses the filter function which keeps track of current and new state
+    // automatically
     removeListItem(number) {
         this.setState({
             listItems: this.state.listItems.filter((_, i) => i !== number)
@@ -47,6 +60,8 @@ export default class Layout extends React.Component {
     }
 
     render() {
+        // render can only emit on html element so we nest our output in one div component
+        // header & footer contains basic html; no *serious* code
         return (
             <div>
                 <Header appTitle={this.state.appTitle} />
