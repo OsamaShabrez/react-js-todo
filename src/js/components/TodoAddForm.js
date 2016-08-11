@@ -1,19 +1,22 @@
 import React from "react";
 
 export default class TodoAddForm extends React.Component {
-    // react way of processing submitted forms preventDefault() prevents
-    // the page reload get the text from form and send it to the MyTodoApp
-    // where the appropriate action is called
+    // react way of processing submitted forms
+    // preventDefault() prevents the page reload
+    // create a new task object and send it to the
+    // layout where the (model) is to insert into state
     handleSubmit(event) {
         event.preventDefault();
-        const taskText = document.getElementById('newTask').value;
-        // the refrenced prop is the attrib of the parent callee
-        // in this case 'addNewTask'
-        if (taskText.length != 0) {
-            this.props.addNewTask(taskText);
+        const taskText = {
+            "text": document.getElementById('newTask').value,
+            "done": false,
         }
         // reset the input field..
         document.getElementById('newTask').value = '';
+        // the refrenced prop is the attrib of the parent callee
+        // in this case 'addNewTask'
+        if (taskText.text.length != 0)
+            this.props.addNewTask(taskText);
     }
 
     render() {
