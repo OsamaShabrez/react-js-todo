@@ -1,14 +1,18 @@
 import React from "react";
 
 // importing child components into Layout
-import Footer from "./Footer";
+import Footer from "./layout/Footer";
 import TodoAddForm from "./TodoAddForm";
-import Header from "./Header";
+import Header from "./layout/Header";
 import TodoList from "./TodoList";
 
 // we are making a small ToDo list where new tasks can be added, previous tasks
 // can be marked done or completely removed
-export default class Layout extends React.Component {
+
+@connect((store) => {
+    
+})
+export default class MyTodoApp extends React.Component {
 
     // setting up the initial state of our application, page title, footer text
     constructor() {
